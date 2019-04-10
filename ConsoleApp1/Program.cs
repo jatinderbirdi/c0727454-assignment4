@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +30,9 @@ namespace ConsoleApp1
                 string line;
                 int counter = 0;
                 int a = 0, myWord = 1;
+                ArrayList lineNumbers = new ArrayList();
+                int linenum = 1;
+                lineNumbers.Add(22);
 
                 while ((line = sr.ReadLine()) != null)
                 {
@@ -39,6 +41,12 @@ namespace ConsoleApp1
                     FindNumberOfBlankSpaces(line);
                     counter++;
 
+                    if (line.Substring(0).Contains("sea") &&  line.Substring(0).Contains("fare"))
+                    {
+                        lineNumbers.Add(linenum);
+                    }
+
+                    // COUNTING THE NUMBER OF WORDS  SECTION B
                     while (a <= line.Length - 1)
                     {
                         if (line[a] == ' ' || line[a] == '\n' || line[a] == '\t')
@@ -49,19 +57,27 @@ namespace ConsoleApp1
                     }
                     a = 0;
 
+                    linenum++;  // SECTION C
                 }
+                
 
-
-                Console.WriteLine("Lines " + counter);
+                // SECTION A: NUMBER OF LINES
+                Console.WriteLine("\n\n\n\n********************************\nLines" + counter);
                 Console.WriteLine("Words " + myWord);
+
+
+                // SECTION C: WORDS WHICH CONTAINS BOTH SEA AND FARE
+                Console.WriteLine("Section c\n");
+                foreach (int i in lineNumbers)
+                {
+                    Console.Write(i + " ");
+                }
                 Console.ReadLine();
             }
 
         }
         public int FindNumberOfBlankSpaces(string line)
         {
-
-
             foreach (char c in line)
             {
                 if (char.IsLetter(c)) { counterletters++; }
